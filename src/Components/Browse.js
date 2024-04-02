@@ -5,7 +5,7 @@ const Browse = () => {
   return (
     <div>
         <Header/>
-     <p> browse</p>
+        
     </div>
   )
 }
