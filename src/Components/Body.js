@@ -1,41 +1,62 @@
-import React, { useEffect } from 'react'
+
 import Login from './Login'
 import Browse from './Browse'
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from '../utils/firebase';
-import { useDispatch } from 'react-redux';
-import { addUser, removeUser } from '../utils/userSlice';
+import TvShows from './TvShows';
+import Watch from './Watch';
+import Error from './Error';
+import AiSearch from './AiSearch';
+
 
 const Body = () => {
-     const dispatch=useDispatch();
+ 
       const Approuter=createBrowserRouter([
         {
             path:'/',
             element:<Login/>,
-        },
-        {
-            path:'/browse',
-            element:<Browse/>
-        }
-      ]);
-       useEffect(()=>{
+          },
+              {
+                path:'/browse',
+                element:<Browse/>,
+                errorElement:<Error/>,
+            },
+            {
+              path:'/tv',
+              element:<TvShows/>,
+            
+            },
+          
+              {
+                path:'/watch/movie/:id',
+                element:<Watch/>,
+                errorElement:<Error/>
+                
+              },
+              {
+                path:'/watch/tv/:id',
+                element:<Watch/>,
+                errorElement:<Error/>
+                
+              },
+
+            
+              {
+                path:'/search',
+                element:<AiSearch/>,
+                
+              },
+              {
+                path:'/error',
+                element:<Error/>,
+                
+              },
+            
         
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-
-    const {uid,email,displayName} = user;
-    dispatch(addUser({uid:uid,email:email,displayName:displayName
-    }));
-  } 
-  else
-   {
-  dispatch(removeUser());
-  }
-});
-
-       },[]);
+      
+        
+        
+      ]);
+      
 
 
 

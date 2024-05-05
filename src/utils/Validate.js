@@ -15,4 +15,4 @@ export const Validatesignup= (email, password,name)=>{
       if(!vpassword) return "Password Is Not Valid";
       if(!vname)return "Not a valid Name";
       return null;
-      }
+}
